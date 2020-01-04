@@ -7,12 +7,14 @@ use JWTAuth;
 use Exception;
 use Tymon\JWTAuth\Http\Middleware\BaseMiddleware;
 
-class JwtMiddleware extends BaseMiddleware
+class RoleMiddleware extends BaseMiddleware
 {
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role)
     {
         try {
-            $user = JWTAuth::parseToken()->authenticate();
+            $payload = JWTAuth::parseToken()->getPayload();
+            if(array_search($role, $payload["roles"]) === false)
+                return response()->json(['status' => 'Not have permissions']);
         } catch (Exception $e) {
             if ($e instanceof \Tymon\JWTAuth\Exceptions\TokenInvalidException){
                 return response()->json(['status' => 'Token is Invalid']);

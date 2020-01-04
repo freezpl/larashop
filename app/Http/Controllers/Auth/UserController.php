@@ -53,8 +53,7 @@ class UserController extends Controller
 
     public function getAuthenticatedUser()
     {
-        try {
-
+        try {  
             if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
@@ -68,7 +67,7 @@ class UserController extends Controller
 
             return response()->json(['token_absent'], $e->getStatusCode());
         }
-
+        $user = JWTAuth::parseToken()->getPayload();
         return response()->json(compact('user'));
     }
 }
