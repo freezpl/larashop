@@ -10,8 +10,8 @@
     </head>
     <body>
         <div id="app"></div>
-        <script src="{{mix('js/app.js')}}" ></script>
-        <script>
+        <script src="{{mix('js/app.js')}}"></script>
+        {{--<script>
             if ('serviceWorker' in navigator) {
               window.addEventListener('load', function() {
                 navigator.serviceWorker.register('js/service-worker.js').then(function(registration) {
@@ -27,6 +27,6 @@
             } else {
               console.log('service worker is not supported');
             }
-          </script>
+          </script> --}}
     </body>
 </html>

@@ -2,11 +2,8 @@ import React, { Component } from 'react';
 import './login.css';
 import { AuthActionCreator } from '../../../../store/actions/AuthActionCreator'
 import AdminLoginForm from '../../../ui/forms/AdminLoginForm/AdminLoginForm';
-import MainForm from '../../../ui/forms/MainForm/MainForm';
 
 class Login extends Component {
-
-
 
     render() {
         return (
@@ -16,7 +13,7 @@ class Login extends Component {
                         <img src="img/logo/logo_main.png"/>
                     </div>
                     <div className="login-form">
-                        <MainForm><AdminLoginForm name="hello!"/></MainForm>
+                        <AdminLoginForm />
                     </div>
                 </div>
             </React.Fragment>
