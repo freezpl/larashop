@@ -1,14 +1,16 @@
 import React from 'react'
-import './custom.css'
+import './auth_layout.css'
 
-const AppLayout = ({children}) => {
-    return(
-        <div className="auth row justify-content-center">
-            <div className="col-md-4">
-            {children}
+const AppLayout = ({ children }) => {
+    return (
+        <div className="auth">
+            <div className="auth_overlay row justify-content-center h-100">
+                <div className="col-md-3">
+                    {children}
+                </div>
             </div>
         </div>
     );
-} 
+}
 
 export default AppLayout;

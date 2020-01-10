@@ -1,0 +1,10 @@
+.login-form{
+    background-color: #fff0d9;
+    border-radius: 4px;
+    padding: 20px;
+    box-shadow: 3px 5px 6px 1px #0404049e;
+}
+
+.logo img{
+    height: 150px;
+}

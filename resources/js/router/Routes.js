@@ -18,6 +18,7 @@ export default class AppRoutes extends Component{
       <Suspense fallback={<h1>Loading...</h1>}>
       <Switch>
         <AppRoute path="/" exact component={Login} layout={AuthLayout} title='Login to system'/>
+        <AppRoute path="/administrator_login" exact component={Login} layout={AuthLayout} title='Login to system'/>
          {/*<AppRoute path="/administrator_login" exact component={Login} layout={AuthLayout} title='Login to system'/>
           <AppRoute path="/" exact component={NewsList} layout={CommonLayout} title='News List'/>
          <AppRoute path="/register" exact component={Register} layout={AuthLayout} title='Register page'/>*/}

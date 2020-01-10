@@ -11,5 +11,22 @@
     <body>
         <div id="app"></div>
         <script src="{{mix('js/app.js')}}" ></script>
+        <script>
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('js/service-worker.js').then(function(registration) {
+                  // Registration was successful
+                  console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                }, function(err) {
+                  // registration failed :(
+                  console.log('ServiceWorker registration failed: ', err);
+                }).catch(function(err) {
+                  console.log(err)
+                });
+              });
+            } else {
+              console.log('service worker is not supported');
+            }
+          </script>
     </body>
 </html>

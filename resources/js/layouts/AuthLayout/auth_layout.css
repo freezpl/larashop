@@ -1,0 +1,9 @@
+.auth{
+   background: url('/public/img/logo/auth_background.jpg');
+   background-size: cover;
+}
+
+.auth_overlay{
+    background: rgba(0, 138, 132, 0.83);
+    padding-top: 100px;
+}

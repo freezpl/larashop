@@ -7,11 +7,14 @@ import mainReducer from './store/reducers/mainReducer';
 import reduxThunk from 'redux-thunk';
 import {createStore, applyMiddleware} from 'redux';
 import {Provider} from 'react-redux';
+import './main.css';
 
 export default class Main extends Component {
     render() {
         return (
-          <AppRoutes />
+            <Router history = {history}>
+                <AppRoutes />
+            </Router>
         );
     }
 }
@@ -27,9 +30,7 @@ if (document.getElementById('app')) {
     const store = createStore(mainReducer, applyMiddleware(reduxThunk));
     const app = (
         <Provider store={store}>
-            <Router history = {history}>
-                <Main />
-            </Router>
+            <Main />
         </Provider>
         );
 
