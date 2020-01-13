@@ -1,16 +1,19 @@
-import {LOGIN} from '../actions/actionTypes'
+import {ADMIN_LOGIN} from '../actions/actionTypes'
+import history from './../../global/history'
 
 const initState = {
     isLogged: false,
 };
 
-export default function AuthReducer(storeState = initState, action){
+export default function AuthReducer(state = initState, action){
     switch (action.type) {
-        case LOGIN:
+        case ADMIN_LOGIN:
+            localStorage.setItem('token', data.data.access_token);
+            history.push('/tasks');
             console.log("Ok")
-            return {...storeState, isLogged: action.value};
+            return {...state, isLogged: action.value};
     
         default:
-            return storeState;
+            return state;
     }
 }

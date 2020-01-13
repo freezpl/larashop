@@ -1,0 +1,55 @@
+.dashboard{
+   background: rgb(255, 252, 220);
+}
+
+.auth_overlay{
+    background: rgba(0, 138, 132, 0.83);
+    padding-top: 100px;
+}
+
+input[type=radio] {
+    display: none;
+  }
+  
+  ul {
+    margin: 0;
+  }
+  
+  label {
+    cursor: pointer;
+  }
+  
+  input[type=radio] ~ ul {
+    animation: close 1.5;
+    display: none;
+    heihgt: 0;
+    max-height: 500px;
+    overflow: hidden;
+  }
+  
+  input[type=radio]:checked ~ ul {
+    animation: open 1.5s;
+    display: block;
+    heihgt: auto;
+    max-height: 500px;
+  }
+  
+  @keyframes open {
+    from {
+      max-height: 0;
+    }
+    to {
+      max-height: auto;
+    }
+  }
+  
+  @keyframes close {
+    from {
+      display: block;
+      max-height: auto;
+    }
+    to {
+      display: none;
+      height: 0;
+    }
+  }

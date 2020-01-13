@@ -1,30 +1,25 @@
 import React, {Component} from 'react';
+import {requiredRule, emailRule, minRule, isBusyRule} from '../../../global/rules';
 import {connect} from 'react-redux';
 
 const formWrapper = (Component)  => {
 
-    const rules = { required: 'required', 
-                    email: 'email',
-                    min: 'min',
-                    isBusy: 'isBusy'
-                };
-
     const handleErrors = field => {
         field.errors = [];
         //required
-        if (!!field.rules[rules.required]) {
+        if (!!field.rules[requiredRule]) {
             if (field.value.length == 0)
             field.errors.push("This field is required! ");
         }
         //email
-        if (!!field.rules[rules.email]) {
+        if (!!field.rules[emailRule]) {
             var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             if (!re.test(field.value.toLowerCase()))
             field.errors.push("Wrong email address!");
         }
         //min
-        if (!!field.rules[rules.min]) {
-            const rule = field.rules[rules.min];
+        if (!!field.rules[minRule]) {
+            const rule = field.rules[minRule];
             if (field.value.length < rule) field.errors.push("Too short!");
         }
         return field;

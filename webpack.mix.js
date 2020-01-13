@@ -10,6 +10,9 @@ const mix = require('laravel-mix');
  | file for the application as well as bundling up all the JS files.
  |
  */
+mix.webpackConfig({ devtool: 'source-map' , output: {
+   chunkFilename: 'js/chunks/[name].js',
+}});
 
 mix.react('resources/js/app.js', 'public/js')
    .sass('resources/sass/app.scss', 'public/css');

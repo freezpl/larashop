@@ -1,0 +1,13 @@
+
+.left-block{
+    background: #009690cc;
+    height: 100%;
+    float: left;
+    /* width: 70px;
+    transition: all .3s linear; */
+    width: 250px;
+}
+
+.left-block:hover{
+    width: 250px;
+}

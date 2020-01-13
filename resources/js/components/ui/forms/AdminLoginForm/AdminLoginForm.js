@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import {connect} from 'react-redux';
 import Input from "../../controls/Input/Input";
-//import { rules } from "../rules";
 import {AuthActionCreator} from '../../../../store/actions/AuthActionCreator';
 import formWrapper from '../formWrapper';
 

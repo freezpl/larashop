@@ -16,10 +16,10 @@ class AdminController extends Controller
 
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 400);
+                return response()->json(['error' => 'Не правильний логін або пароль'], 400);
             }
         } catch (JWTException $e) {
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return response()->json(['error' => 'Токен доступу не створився'], 500);
         }
 
         return response()->json(compact('token'));

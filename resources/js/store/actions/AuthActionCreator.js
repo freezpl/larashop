@@ -1,18 +1,17 @@
   
-import {LOGIN} from './actionTypes'
+import {ADMIN_LOGIN} from './actionTypes'
 import axios from '../../global/axios'
-import history from './../../global/history'
 
 export class AuthActionCreator {
     static loginAdmin(email, password){
         return (dispatch) =>{
             axios.post('auth/administrator_login', {email, password}).then((data)=>{
-                console.log(data);
-                //localStorage.setItem('token', data.data.access_token);
-                //dispatch({type:LOGIN, value: true});
-                //history.push('/tasks');
-            }).catch((e)=>{
-                console.error(e);
+                const token = data.data.token;
+                dispatch({type:ADMIN_LOGIN, value: token});
+            }, (error)=>{
+                console.log("Bad loghin or password");
+            }).catch((error)=>{
+                
             });
         }          
     }
