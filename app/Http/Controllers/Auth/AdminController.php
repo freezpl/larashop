@@ -13,7 +13,7 @@ class AdminController extends Controller
     {
         //$credentials = $request->only('name', 'password');
         $credentials = $request->only('email', 'password');
-
+        
         try {
             if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json(['error' => 'Не правильний логін або пароль'], 400);

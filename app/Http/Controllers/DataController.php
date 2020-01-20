@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use Illuminate\Http\Request;
 use App\Role;
 
@@ -9,7 +10,7 @@ class DataController extends Controller
 {
     public function open() 
             {
-                $data = Role::all()->load('users');
+                $data = Category::all()->load('users');
                 return $data;
             }
 
