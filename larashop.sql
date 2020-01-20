@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Час створення: Січ 17 2020 р., 08:43
+-- Час створення: Січ 20 2020 р., 08:52
 -- Версія сервера: 8.0.15
 -- Версія PHP: 7.1.22
 
@@ -21,6 +21,22 @@ SET time_zone = "+00:00";
 --
 -- База даних: `larashop`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблиці `categories`
+--
+
+CREATE TABLE `categories` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `thumb` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `parent_id` bigint(20) DEFAULT NULL,
+  `active` tinyint(1) NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -45,7 +61,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (4, '2020_01_03_142416_create_table_roles', 1),
 (5, '2020_01_04_114114_drop_role_from_roles_table', 1),
 (6, '2020_01_04_114250_add_role_to_roles_table', 1),
-(7, '2020_01_04_114721_create_user_role_table', 1);
+(7, '2020_01_04_114721_create_user_role_table', 1),
+(8, '2020_01_18_081831_create_categories_table', 2);
 
 -- --------------------------------------------------------
 
@@ -128,6 +145,13 @@ INSERT INTO `user_role` (`user_id`, `role_id`) VALUES
 --
 
 --
+-- Індекси таблиці `categories`
+--
+ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `categories_name_unique` (`name`);
+
+--
 -- Індекси таблиці `migrations`
 --
 ALTER TABLE `migrations`
@@ -164,10 +188,16 @@ ALTER TABLE `user_role`
 --
 
 --
+-- AUTO_INCREMENT для таблиці `categories`
+--
+ALTER TABLE `categories`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT для таблиці `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT для таблиці `roles`
