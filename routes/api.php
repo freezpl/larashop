@@ -8,9 +8,12 @@ Route::post('register', 'Auth\UserController@register');
 Route::post('login', 'Auth\UserController@login');
 Route::get('open', 'DataController@open');
 
-Route::group(['middleware' => ['jwt.verify', 'role:user,admin']], 
-//Route::group(['middleware' => ['jwt.verify']], 
+Route::post('dashboard/categories/add', 'Dashboard\CategoriesController@add');
+
+Route::group(['middleware' => ['jwt.verify', 'role:admin']],
     function () {
         Route::get('user', 'Auth\UserController@getAuthenticatedUser');
         Route::get('closed', 'DataController@closed');
+
+
 });
