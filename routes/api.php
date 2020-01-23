@@ -9,6 +9,7 @@ Route::post('login', 'Auth\UserController@login');
 Route::get('open', 'DataController@open');
 
 Route::post('dashboard/categories/add', 'Dashboard\CategoriesController@add');
+Route::get('dashboard/categories/', 'Dashboard\CategoriesController@all');
 
 Route::group(['middleware' => ['jwt.verify', 'role:admin']],
     function () {

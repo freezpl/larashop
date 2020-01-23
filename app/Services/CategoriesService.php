@@ -16,4 +16,10 @@ class CategoriesService implements ICategoriesService {
         $cat = Category::create($data);
         return $cat ? $cat : null;
     }
+
+    public function all(){
+        //$cats = Category::all()->load('children');
+        $cats = Category::with('children')->get();
+         return $cats;
+    }
 }

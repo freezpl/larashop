@@ -16,11 +16,15 @@ class CategoriesController extends Controller
             'name' => 'required|unique:categories',
             'slug' => 'required|unique:categories',
         ]);
-
         if($validation->fails())
             return response()->json(["errors" => $validation->errors()]);
 
-        Categories::addCategory($request);
-        return response()->json('Ok');
+        $cat = Categories::addCategory($request);
+        return response()->json($cat);
+    }
+
+    public function all(){
+        $cats = Categories::all();
+        return $cats;
     }
 }
