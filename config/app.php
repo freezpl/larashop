@@ -174,9 +174,12 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        //Innstalling providers
+        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
 
         //MyProviders
-        Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
+        App\Providers\CategoriesServiceProvider::class,
 
     ],
 
@@ -228,9 +231,12 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        //MyAliases
+        //Installed aliases
         'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class, 
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+        'Image' => Intervention\Image\Facades\Image::class,
+        //MyAliases
+        'Categories' => App\Services\Facades\Categories::class,
 
     ],
 
