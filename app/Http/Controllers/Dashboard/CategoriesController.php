@@ -23,8 +23,8 @@ class CategoriesController extends Controller
         return response()->json($cat);
     }
 
-    public function all(){
-        $cats = Categories::all();
+    public function tree(){
+        $cats = Categories::tree();
         return $cats;
     }
 }

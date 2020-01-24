@@ -17,9 +17,7 @@ class CategoriesService implements ICategoriesService {
         return $cat ? $cat : null;
     }
 
-    public function all(){
-        //$cats = Category::all()->load('children');
-
+    public function tree(){
         $cats = Category::all();
         $res = array();
         foreach ($cats as $cat) {

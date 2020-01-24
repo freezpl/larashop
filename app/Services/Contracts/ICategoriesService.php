@@ -4,5 +4,5 @@ namespace App\Services\Contracts;
 
 interface ICategoriesService {
     public function addCategory($request);
-    public function all();
+    public function tree();
 }
