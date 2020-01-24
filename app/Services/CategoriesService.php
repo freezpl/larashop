@@ -19,7 +19,25 @@ class CategoriesService implements ICategoriesService {
 
     public function all(){
         //$cats = Category::all()->load('children');
-        $cats = Category::with('children')->get();
-         return $cats;
+
+        $cats = Category::all();
+        $res = array();
+        foreach ($cats as $cat) {
+            if($cat["parent_id"] == null)
+                array_push($res, $cat);
+        }
+        $res = $this->GetChildren($res);         
+        return $res;
+    }
+
+    private function GetChildren($cats){
+        for ($i=0; $i < count($cats) ; $i++) { 
+            $cat = Category::find($cats[$i]->id);
+            if(count($cat->children) > 0)
+                $this->GetChildren($cat->children);
+                $cats[$i]->children = $cat->children;
+        }
+
+        return $cats;
     }
 }
