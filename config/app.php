@@ -180,6 +180,7 @@ return [
 
         //MyProviders
         App\Providers\CategoriesServiceProvider::class,
+        App\Providers\TextServiceProvider::class,
 
     ],
 
@@ -237,6 +238,7 @@ return [
         'Image' => Intervention\Image\Facades\Image::class,
         //MyAliases
         'Categories' => App\Services\Facades\Categories::class,
+        'TextFacade' => App\Services\Facades\TextFacade::class,
 
     ],
 

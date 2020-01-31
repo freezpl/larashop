@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Dashboard;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Categories;
-use App;
+use TextFacade;
+use App\Category;
 use Illuminate\Support\Facades\Validator;
 
 class CategoriesController extends Controller
@@ -14,13 +15,25 @@ class CategoriesController extends Controller
     {
         $validation = Validator::make($request->all(),[ 
             'name' => 'required|unique:categories',
-            'slug' => 'required|unique:categories',
+            'thumb' => 'mimes:jpeg,jpg,png,gif|required|max:5000',
+            'image' => 'mimes:jpeg,jpg,png,gif|required|max:10000',
+            'parent_id' => 'required|numeric'
         ]);
+
         if($validation->fails())
             return response()->json(["errors" => $validation->errors()]);
+        
+        $data = $request->all();
+        
+        if($data['slug'] == '')
+            $data['slug'] = TextFacade::generateSlug($request->name, array('transliterate' => true));
+        $findSlug = Category::where('slug', $request['slug'])->first();
+        
+        if($findSlug != null)
+            return response()->json(["errors" => "This slug is busy"]);
 
-        $cat = Categories::addCategory($request);
-        return response()->json($cat);
+        $resp = Categories::addCategory($data);
+        return $resp;
     }
 
     public function tree(){
