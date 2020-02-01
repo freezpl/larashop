@@ -40,4 +40,12 @@ class CategoriesController extends Controller
         $cats = Categories::tree();
         return $cats;
     }
+
+    public function all(){
+        return response(Category::withCount('children')->get());
+    }
+
+    public function getCategory($request){
+        return response(Category::where('slug', $request)->first());        
+    }
 }
