@@ -27,6 +27,8 @@ class CategoriesController extends Controller
         
         if($data['slug'] == '')
             $data['slug'] = TextFacade::generateSlug($request->name, array('transliterate' => true));
+        else
+            $data['slug'] = TextFacade::generateSlug($request->slug, array('transliterate' => true));
         $findSlug = Category::where('slug', $request['slug'])->first();
         
         if($findSlug != null)
@@ -47,5 +49,9 @@ class CategoriesController extends Controller
 
     public function getCategory($request){
         return response(Category::where('slug', $request)->first());        
+    }
+
+    public function editCategoryActive($id, $active){
+        return Categories::editCategoryActive($id, $active);
     }
 }

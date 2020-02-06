@@ -16,5 +16,7 @@ Route::get('category/{slug}', 'Dashboard\CategoriesController@getCategory');
 Route::group(['middleware' => ['jwt.verify', 'role:admin']],
 function () {
     Route::post('dashboard/categories/add', 'Dashboard\CategoriesController@add');
+    Route::get('dashboard/categories/edit/isactive/{id}/{active}', 'Dashboard\CategoriesController@editCategoryActive');
     Route::get('user', 'Auth\UserController@getAuthenticatedUser');
+
 });
