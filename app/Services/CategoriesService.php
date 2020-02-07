@@ -46,37 +46,39 @@ class CategoriesService implements ICategoriesService
             return response()->json(["errors" => "No category found"], 400);
 
         $storagePath = Storage::getAdapter()->getPathPrefix();
-        try {
 
             if ($data['thumb'] != null) {
-                Storage::delete($storagePath . $data['oldThumb']);
+                try {
+                Storage::delete('category_thumb', $data['oldThumb']);
+                }
+                catch(Exeception $e){}
                 $cat->thumb = $data['thumb']->store('category_thumb', 'files');
-                $pathThumb = $storagePath.$data['thumb'];
+                $pathThumb = $storagePath.$cat->thumb;
                 Image::make($pathThumb)->resize(100, 100, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($pathThumb);
             }
 
             if ($data['image'] != null) {
-                Storage::delete($storagePath . $data['oldImage']);
+                try{
+                Storage::delete('category_image', $data['oldImage']);
+                }
+                catch(Exception $e){}
                 $cat->image = $data['image']->store('category_image', 'files');
-                $pathImage = $storagePath.$data['thumb'];
+                $pathImage = $storagePath.$cat->image;
                 Image::make($pathImage)->resize(200, 200, function ($constraint) {
                     $constraint->aspectRatio();
                 })->save($pathImage);
             } 
             //save parent
             $parent = Category::where('id', $data['parent_id'])->first();
-            if ($parent == null)
-                $cat->parent_id = null;
+            $cat->parent_id = ($parent == null) ? null : $data['parent_id'];
             
             $cat->name = $data['name'];
             $cat->slug = $data['slug'];
-            $cat->active = ($data['active'] === 'true') ? true : false;
+            $cat->active = ($data['active'] == 'true') ? true : false;
             $cat->save();
-        } catch (Exception $e) {
-            return response()->json(["errors" => $e], 401);
-        }
+  
         return response(['success' => 'success'], 200);
     }
 

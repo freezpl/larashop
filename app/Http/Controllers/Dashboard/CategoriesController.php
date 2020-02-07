@@ -57,23 +57,23 @@ class CategoriesController extends Controller
 
     public function edit(Request $request)
     {
-        // $validation = Validator::make($request->all(),[ 
-        //     'name' => 'required',
-        //     'slug' => 'required',
-        //     'thumb' => 'nullable|sometimes|image|mimes:jpeg,bmp,png,jpg,svg|max:2000',
-        //     'image' => 'nullable|sometimes|image|mimes:jpeg,bmp,png,jpg,svg|max:5000',
-        //     'parent_id' => 'required|numeric'
-        // ]);
+        $validation = Validator::make($request->all(),[ 
+            'name' => 'required',
+            'slug' => 'required',
+            'thumb' => 'nullable|sometimes|image|mimes:jpeg,bmp,png,jpg,svg|max:5000',
+            'image' => 'nullable|sometimes|image|mimes:jpeg,bmp,png,jpg,svg|max:10000',
+            'parent_id' => 'required|numeric'
+        ]);
 
-        // if($validation->fails())
-        // {
-        //     return response()->json(["errors" => $validation->errors()], 400);
-        // }
+        if($validation->fails())
+        {
+            return response()->json(["errors" => $validation->errors()], 400);
+        }
         
         $data = $request->all();
         if(!$data['slug'])
             return response()->json(["errors" => "No slug! Enter and try again!"], 400);
-        
+
         $findSlug = Category::where('slug', $request['slug'])->first();
         if($findSlug != null && $findSlug->id != $data['id'])
             return response()->json(["errors" => "This slug is busy"], 400);
