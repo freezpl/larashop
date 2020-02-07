@@ -12,6 +12,8 @@ Route::get('categories/tree', 'Dashboard\CategoriesController@tree');
 Route::get('categories/all', 'Dashboard\CategoriesController@all');
 Route::get('category/{slug}', 'Dashboard\CategoriesController@getCategory');
 
+Route::get('currencies/', 'Dashboard\CurrenciesController@get');
+
 //Dashboard
 Route::group(['middleware' => ['jwt.verify', 'role:admin']],
 function () {

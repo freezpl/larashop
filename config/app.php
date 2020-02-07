@@ -181,7 +181,7 @@ return [
         //MyProviders
         App\Providers\CategoriesServiceProvider::class,
         App\Providers\TextServiceProvider::class,
-
+        App\Providers\CurrenciesServiceProvider::class,
     ],
 
     /*
