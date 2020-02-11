@@ -20,6 +20,12 @@ function () {
     Route::post('dashboard/categories/add', 'Dashboard\CategoriesController@add');
     Route::post('dashboard/categories/edit', 'Dashboard\CategoriesController@edit');
     Route::get('dashboard/categories/edit/isactive/{id}/{active}', 'Dashboard\CategoriesController@editCategoryActive');
+    Route::post('dashboard/currencies/add', 'Dashboard\CurrenciesController@add');
+    Route::get('dashboard/currencies/changemain/{id}', 'Dashboard\CurrenciesController@changeMain');
+
+
+
     Route::get('user', 'Auth\UserController@getAuthenticatedUser');
 
 });
+

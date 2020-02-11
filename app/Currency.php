@@ -9,4 +9,6 @@ class Currency extends Model
     protected $fillable = [
         'name',	'ccy',	'desc',	'exchange',	'main',	'published'
     ];
+
+    public $timestamps = false;
 }
