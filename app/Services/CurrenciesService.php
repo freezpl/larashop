@@ -7,7 +7,6 @@ use App\Currency;
 
 class CurrenciesService implements ICurrenciesService
 {
-
     public function addCurrency($data)
     {
         try {
