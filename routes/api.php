@@ -15,15 +15,15 @@ Route::get('category/{slug}', 'Dashboard\CategoriesController@getCategory');
 Route::get('currencies/', 'Dashboard\CurrenciesController@get');
 
 //Dashboard
-Route::group(['middleware' => ['jwt.verify', 'role:admin']],
+Route::group(['middleware' => ['jwt.verify', 'role:admin'], 'prefix' => 'dashboard'],
 function () {
-    Route::post('dashboard/categories/add', 'Dashboard\CategoriesController@add');
-    Route::post('dashboard/categories/edit', 'Dashboard\CategoriesController@edit');
-    Route::get('dashboard/categories/edit/isactive/{id}/{active}', 'Dashboard\CategoriesController@editCategoryActive');
-    Route::post('dashboard/currencies/add', 'Dashboard\CurrenciesController@add');
-    Route::get('dashboard/currencies/changemain/{id}', 'Dashboard\CurrenciesController@changeMain');
-
-
+    Route::post('categories/add', 'Dashboard\CategoriesController@add');
+    Route::post('categories/edit', 'Dashboard\CategoriesController@edit');
+    Route::get('categories/edit/isactive/{id}/{active}', 'Dashboard\CategoriesController@editCategoryActive');
+    Route::post('currencies/add', 'Dashboard\CurrenciesController@add');
+    Route::get('currencies/changemain/{id}', 'Dashboard\CurrenciesController@changeMain');
+    
+    Route::post('helpers/checkisbusy', 'Helpers\CheckController@isBusy')->middleware(['models:Currency']);
 
     Route::get('user', 'Auth\UserController@getAuthenticatedUser');
 

@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         //My middlewares
         'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
         'role' => \App\Http\Middleware\RoleMiddleware::class,
+        'models' => \App\Http\Middleware\ModelsMiddleware::class,
     ];
 
     /**
