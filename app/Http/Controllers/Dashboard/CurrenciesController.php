@@ -21,6 +21,7 @@ class CurrenciesController extends Controller
         $validation = Validator::make($request->all(),[ 
             'name' => 'required|unique:currencies',
             'ccy' => 'required|unique:currencies',
+            'desc' => 'required|unique:currencies',
             'exchange' => 'numeric|nullable'
         ]);
 
