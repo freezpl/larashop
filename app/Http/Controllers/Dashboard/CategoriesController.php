@@ -21,7 +21,7 @@ class CategoriesController extends Controller
         ]);
 
         if($validation->fails())
-            return response()->json(["errors" => $validation->errors()]);
+            return response()->json(["errors" => $validation->errors()], 400);
         
         $data = $request->all();
         

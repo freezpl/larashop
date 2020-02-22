@@ -24,8 +24,9 @@ function () {
     Route::get('currencies/changemain/{id}', 'Dashboard\CurrenciesController@changeMain');
     
     Route::post('helpers/checkisbusy', 'Helpers\CheckController@isBusy')->middleware(['models:Currency']);
-
+    Route::post('helpers/filter/list', 'Helpers\FilterController@list')->middleware(['models:Currency,Category']);
+    
     Route::get('user', 'Auth\UserController@getAuthenticatedUser');
-
+    
 });
 
