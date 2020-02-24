@@ -14,11 +14,10 @@ class FilterController extends Controller
 
     public function list(Request $request){
         $model = 'App\\'.$request->model;
-        $filter = $model::where('name','LIKE','%'.$request->text.'%')->get();
-
-
-        //$isBusy = ($model::where($request->field, $request->value)->count() > 0) ? true : false;
-        return response()->json($filter);        
+        $count = $model::where('name','LIKE','%'.$request->text.'%')->count();
+        $collection = $model::where('name','LIKE','%'.$request->text.'%')->
+                        take($request->perpage)->get();
+        return response()->json(["collection" => $collection, "count" => $count]);        
     }
 
 }
