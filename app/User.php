@@ -5,6 +5,7 @@ namespace App;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Carbon\Carbon;
 
 class User extends Authenticatable implements JWTSubject
 {
@@ -37,6 +38,7 @@ class User extends Authenticatable implements JWTSubject
         $rolesArr = array();
         foreach ($this->roles as $role) 
             array_push($rolesArr, $role->name);
-        return ['roles' => $rolesArr];
+        return ['roles' => $rolesArr, 
+                'exp' => Carbon::now()->addDays(7)->timestamp];
     }
 }
