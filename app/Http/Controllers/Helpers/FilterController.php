@@ -15,7 +15,9 @@ class FilterController extends Controller
     public function list(Request $request){
         $model = 'App\\'.$request->model;
         $count = $model::where('name','LIKE','%'.$request->text.'%')->count();
+
         $collection = $model::where('name','LIKE','%'.$request->text.'%')
+                        ->orderBy($request->order, $request->direction)
                         ->offset($request->offset)
                         ->take($request->perpage)
                         ->get();
