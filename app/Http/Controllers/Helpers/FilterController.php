@@ -15,11 +15,13 @@ class FilterController extends Controller
     public function list(Request $request){
         $model = 'App\\'.$request->model;
         $count = $model::where('name','LIKE','%'.$request->text.'%')->count();
+        $limit = ($request->perpage == 0) ? $count : $request->perpage;
+
 
         $collection = $model::where('name','LIKE','%'.$request->text.'%')
                         ->orderBy($request->order, $request->direction)
                         ->offset($request->offset)
-                        ->take($request->perpage)
+                        ->take($limit)
                         ->get();
         return response()->json(["collection" => $collection, "count" => $count]);        
     }
