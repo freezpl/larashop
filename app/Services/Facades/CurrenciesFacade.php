@@ -2,9 +2,9 @@
 namespace App\Services\Facades;
 use Illuminate\Support\Facades\Facade;
 
-class Currencies extends Facade {
+class CurrenciesFacade extends Facade {
 
     public static function getFacadeAccessor() {
-        return 'currencies';
+        return 'currenciesService';
     }
 }

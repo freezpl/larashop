@@ -4,12 +4,12 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class ModelsMiddleware
+class AcceptFieldsMiddleware
 {
-    public function handle($request, Closure $next, ...$models)
+    public function handle($request, Closure $next, ...$fields)
     {
         try {
-            if(in_array($request->model, $models) == true)
+            if(in_array($request->field, $fields) == true)
                 return $next($request);
             return response()->json(['status' => 'No rights to this request'], 400);
         } catch (Exception $e) {

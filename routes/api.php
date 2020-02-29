@@ -20,10 +20,15 @@ function () {
     Route::post('categories/add', 'Dashboard\CategoriesController@add');
     Route::post('categories/edit', 'Dashboard\CategoriesController@edit');
     Route::get('categories/edit/isactive/{id}/{active}', 'Dashboard\CategoriesController@editCategoryActive');
+
     Route::post('currencies/add', 'Dashboard\CurrenciesController@add');
     Route::get('currencies/changemain/{id}', 'Dashboard\CurrenciesController@changeMain');
-    
-    Route::post('helpers/checkisbusy', 'Helpers\CheckController@isBusy')->middleware(['models:Currency']);
+    Route::get('currencies/edit/publish/{id}/{published}', 'Dashboard\CurrenciesController@editCurrencyPublish');
+    Route::get('currencies/{id}', 'Dashboard\CurrenciesController@getById');
+    Route::post('currencies/update', 'Dashboard\CurrenciesController@update');
+    Route::get('currencies/del/{id}', 'Dashboard\CurrenciesController@del');
+
+    Route::post('helpers/checkisbusy', 'Helpers\CheckController@isBusy')->middleware(['models:Currency', 'fields:name,ccy,desc']);
     Route::post('helpers/filter/list', 'Helpers\FilterController@list')->middleware(['models:Currency,Category']);
     
     Route::get('user', 'Auth\UserController@getAuthenticatedUser');

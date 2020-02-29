@@ -6,9 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use App\Currency;
-use App;
-use Currencies;
-use DB;
+use App\Services\Facades\CurrenciesFacade;
 
 class CurrenciesController extends Controller
 {
@@ -26,10 +24,10 @@ class CurrenciesController extends Controller
         ]);
 
         if($validation->fails())
-            return response()->json(["errors" => $validation->errors()]);
+            return response()->json(["errors" => $validation->errors()], 400);
 
         $data = $request->all();
-        return Currencies::addCurrency($data);
+        return CurrenciesFacade::addCurrency($data);
     }
 
     public function changeMain($id){
@@ -37,7 +35,36 @@ class CurrenciesController extends Controller
         $curr = Currency::find($id);
         if($curr == null)
             return response()->json(["errors" => "No currency found!"], 400);
-        $curr->update(['main' => true]);            
-        return Currency::all();
+        $curr->update(['main' => true]);
+        return response()->json(["data" => true]);            
+    }
+
+    public function editCurrencyPublish($id, $published){
+        return CurrenciesFacade::editCurrencyPublish($id, $published);
+    }
+
+    public function getById($id){
+        return CurrenciesFacade::getById($id);
+    }
+    
+    public function update(Request $request)
+    {
+        $validation = Validator::make($request->all(),[ 
+            'name' => 'required',
+            'ccy' => 'required',
+            'desc' => 'required',
+            'exchange' => 'numeric|nullable'
+        ]);
+
+        if($validation->fails())
+            return response()->json(["errors" => $validation->errors()], 400);
+
+        $data = $request->all();
+        return CurrenciesFacade::update($data);
+    }
+
+    public function del($id)
+    {
+        return CurrenciesFacade::del($id);
     }
 }

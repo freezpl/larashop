@@ -239,7 +239,7 @@ return [
         //MyAliases
         'Categories' => App\Services\Facades\Categories::class,
         'TextFacade' => App\Services\Facades\TextFacade::class,
-        'Currencies' => App\Services\Facades\Currencies::class,
+        'CurrenciesFacade' => App\Services\Facades\CurrenciesFacade::class,
     ],
 
 ];

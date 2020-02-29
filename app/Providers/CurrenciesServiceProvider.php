@@ -24,7 +24,7 @@ class CurrenciesServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->app->bind('currencies', function(){
+        $this->app->bind('currenciesService', function(){
             return new CurrenciesService();
         });
     }
